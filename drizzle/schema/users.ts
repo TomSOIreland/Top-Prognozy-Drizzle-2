@@ -4,7 +4,7 @@ import { createdAt, id, updatedAt } from "@/drizzle/schema/schemaHelpers";
 export const userRoles = ["user", "admin"] as const;
 export type UserRole = (typeof userRoles)[number];
 export const userRoleEnum = pgEnum("user_role", userRoles);
-export const users = pgTable("users", {
+export const Users = pgTable("users", {
   id,
   clerkUserId: text("clerkUserId").notNull().unique(),
   username: text("username").notNull().unique(),

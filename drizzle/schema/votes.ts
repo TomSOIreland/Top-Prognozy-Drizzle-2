@@ -6,8 +6,8 @@ import {
   index,
   unique,
 } from "drizzle-orm/pg-core";
-import { users } from "@/drizzle/schema/users";
-import { programmes } from "@/drizzle/schema/programmes";
+import { Users } from "@/drizzle/schema/users";
+import { Programmes } from "@/drizzle/schema/programmes";
 import { createdAt, updatedAt } from "@/drizzle/schema/schemaHelpers";
 
 // Enum for vote types
@@ -24,10 +24,10 @@ export const votes = pgTable(
     id: uuid("id").defaultRandom().primaryKey(),
     user_id: uuid("user_id")
       .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
+      .references(() => Users.id, { onDelete: "cascade" }),
     vote_type: voteTypeEnum("vote_type").notNull(),
     target_id: uuid("target_id").notNull(), // ID of track or album
-    programme_id: uuid("programme_id").references(() => programmes.id, {
+    programme_id: uuid("programme_id").references(() => Programmes.id, {
       onDelete: "cascade",
     }), // Only for programme_track votes
     year: integer("year"), // Year of vote for annual votes

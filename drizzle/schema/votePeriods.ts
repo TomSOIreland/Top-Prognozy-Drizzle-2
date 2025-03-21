@@ -2,7 +2,7 @@
 import { createdAt, id, updatedAt } from "@/drizzle/schema/schemaHelpers";
 import { boolean, integer, pgTable, timestamp } from "drizzle-orm/pg-core";
 
-export const vote_periods = pgTable("vote_periods", {
+export const VotePeriods = pgTable("vote_periods", {
   id,
   year: integer("year").notNull().unique(),
   track_voting_open: boolean("track_voting_open").default(false).notNull(),

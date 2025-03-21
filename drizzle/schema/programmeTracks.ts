@@ -1,19 +1,19 @@
 // Junction table for many-to-many relationship between programmes and tracks
 import { integer, pgTable, unique, uuid } from "drizzle-orm/pg-core";
 import { createdAt, id } from "@/drizzle/schema/schemaHelpers";
-import { programmes } from "@/drizzle/schema/programmes";
-import { tracks } from "@/drizzle/schema/tracks";
+import { Programmes } from "@/drizzle/schema/programmes";
+import { Tracks } from "@/drizzle/schema/tracks";
 
-export const programme_tracks = pgTable(
+export const ProgrammeTracks = pgTable(
   "programme_tracks",
   {
     id,
     programme_id: uuid("programme_id")
       .notNull()
-      .references(() => programmes.id, { onDelete: "cascade" }),
+      .references(() => Programmes.id, { onDelete: "cascade" }),
     track_id: uuid("track_id")
       .notNull()
-      .references(() => tracks.id, { onDelete: "cascade" }),
+      .references(() => Tracks.id, { onDelete: "cascade" }),
     play_order: integer("play_order").notNull(), // Order in which tracks were played
     createdAt,
   },
