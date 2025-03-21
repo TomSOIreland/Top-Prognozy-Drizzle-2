@@ -6,13 +6,12 @@ export type UserRole = (typeof userRoles)[number];
 export const userRoleEnum = pgEnum("user_role", userRoles);
 export const Users = pgTable("users", {
   id,
-  clerkUserId: text("clerkUserId").notNull().unique(),
-  username: text("username").notNull().unique(),
-  display_name: text("display_name"),
+  clerkUserId: text().notNull().unique(),
+  email: text(),
+  name: text().notNull(),
   role: userRoleEnum().notNull().default("user"),
-  email: text("email").notNull().unique(),
-  avatar_url: text("avatar_url"),
+  imageUrl: text(),
+  deletedAt: timestamp({ withTimezone: true }),
   createdAt,
   updatedAt,
-  deletedAt: timestamp("deleted_at"),
 });
