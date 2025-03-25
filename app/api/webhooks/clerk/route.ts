@@ -4,7 +4,10 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { deleteUser, insertUser, updateUser } from '@/features/users/db/users'
 import { syncClerkUserMetadata } from '@/services/clerk'
 
+
+
 export async function POST(req: Request) {
+   console.log('WEBHOOK HIT!')
   const SIGNING_SECRET = process.env.SIGNING_SECRET
   console.log(SIGNING_SECRET)
 
